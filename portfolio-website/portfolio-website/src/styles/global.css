@@ -6,10 +6,14 @@ body {
   text-shadow: rgba(93, 93, 255, 0.737) 2px 2px;
 }
 .icon-white-hover {
-  color: rgba(255, 255, 255, 0.737);
+  color: rgba(224, 18, 18, 0.737);
 }
-.icon-white {
-  color: rgb(255, 255, 255);
+.tooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
 }
 @theme {
   /* ... */
