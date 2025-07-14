@@ -9,12 +9,18 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^4.3.0",
     "@popperjs/core": "^2.11.8",
+    "@react-three/fiber": "^9.2.0",
     "@tailwindcss/vite": "^4.1.11",
     "@types/bootstrap": "^5.2.10",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "astro": "^5.11.0",
     "astro-bootstrap": "^0.7.2",
     "bootstrap": "^5.3.7",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.11",
     "three": "^0.178.0"
   }
