@@ -1,9 +1,37 @@
-import * as THREE from 'three'
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef } from "react";
 
-const scene = new THREE.scene();
+const Box = () => {
+  const ref = useRef();
 
-scene.background = new THREE.Color('#F0F0F0');
+  useFrame(() => {
+    ref.current.rotation.x += 0.002;
+    ref.current.rotation.y += 0.002;
+  });
 
-export default function TestComponent() {
-  return (1);
+  return (
+    <>
+      <mesh ref={ref}>
+        <boxGeometry args={[2, 2, 2]} />
+        <meshBasicMaterial color={"red"} />
+      </mesh>
+    </>
+  );
+};
+
+export default function BackgroundShader({ }) {
+  return (
+    <Canvas
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: -1,
+      }}
+    >
+      <Box />
+    </Canvas>
+  );
 }

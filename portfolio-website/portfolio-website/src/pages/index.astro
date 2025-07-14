@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 
-import TestComponent from "../components/main.jsx";
+import BackgroundShader from "../components/main.jsx";
 ---
 
 <html lang="en">
@@ -18,13 +18,14 @@ import TestComponent from "../components/main.jsx";
   </head>
   <body>
     <div class="flex h-screen justify-center items-center">
+      <BackgroundShader client:load />
       <div
         class="text-center justify-center items-center w-screen p-8 bg-black"
       >
         <h1 class="blue-text-shadow text-4xl text-testblue">Andrew Friesen</h1>
         <h2 class="blue-text-shadow text-lg text-white">Jr Developer</h2>
         <p class="blue-text-shadow text-sm text-white">
-          Some sort of description. <br />......etc <TestComponent />
+          Some sort of description. <br />......etc
         </p>
         <div class="icons flex items-center justify-center">
           <div class="flex pt-4 w-fit">
