@@ -19,7 +19,6 @@
     "@types/react-dom": "^19.1.6",
     "astro": "^5.11.0",
     "astro-bootstrap": "^0.7.2",
-    "axios": "^1.10.0",
     "bootstrap": "^5.3.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
