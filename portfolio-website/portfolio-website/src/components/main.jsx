@@ -1,25 +1,25 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-
-const Box = () => {
-  const ref = useRef();
-
-  useFrame(() => {
-    ref.current.rotation.x += 0.002;
-    ref.current.rotation.y += 0.002;
-  });
-
-  return (
-    <>
-      <mesh ref={ref}>
-        <boxGeometry args={[2, 2, 2]} />
-        <meshBasicMaterial color={"red"} />
-      </mesh>
-    </>
-  );
-};
+import axios from "axios";
+import { useEffect, useState, useRef } from "react";
+import * as THREE from 'three'
+const Scene = () => {
+  return <mesh>
+    <PlaneGeometry/>
+    <ShaderMaterial/>
+  </mesh>
+}
 
 export default function BackgroundShader({ }) {
+  const [vertex, setVertex] = useState('');
+  const [fragment, setFragment] = useState('');
+
+  useEffect(()=> {
+    axios.get('src/shaders/vertexShader.glsl').then(res => setVertex(res.data));
+    axios.get('src/shaders/testShader.glsl').then(res => setFragment(res.data));
+  },[]) 
+
+  if (vertex == '' || fragment == '') return null;
+
   return (
     <Canvas
       style={{
