@@ -1,27 +1,33 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import axios from "axios";
-import { useEffect, useState, useRef } from "react";
-import * as THREE from 'three'
-const Scene = () => {
-  return <mesh>
-    <PlaneGeometry/>
-    <ShaderMaterial/>
-  </mesh>
-}
+import { Environment, OrbitControls } from "@react-three/drei"
+import vertexShader from "../shaders/test.vertex.glsl?raw"
+import fragmentShader from "../shaders/test.fragment.glsl?raw"
+import { useThree } from '@react-three/fiber'
+import { useMemo } from 'react'
 
-export default function BackgroundShader({ }) {
-  const [vertex, setVertex] = useState('');
-  const [fragment, setFragment] = useState('');
+function FullscreenPlane() {
+  const { camera, size } = useThree()
 
-  useEffect(()=> {
-    axios.get('src/shaders/vertexShader.glsl').then(res => setVertex(res.data));
-    axios.get('src/shaders/testShader.glsl').then(res => setFragment(res.data));
-  },[]) 
-
-  if (vertex == '' || fragment == '') return null;
+  const [width, height] = useMemo(() => {
+    const fov = (camera.fov * Math.PI)
+    const distance = camera.position.z
+    const height = 2 * Math.tan(fov / 2) * distance
+    const width = height * (size.width / size.height)
+    return [width, height]
+  }, [camera, size])
 
   return (
+    <mesh>
+      <planeGeometry args={[width, height, 16, 16]} />
+      <shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader} />
+    </mesh>
+  )
+}
+
+export default function ThreeCanvas() {
+  return (
     <Canvas
+      camera={{ position: [0, 0, 5], fov: 75 }}
       style={{
         position: 'absolute',
         top: 0,
@@ -31,7 +37,7 @@ export default function BackgroundShader({ }) {
         zIndex: -1,
       }}
     >
-      <Box />
+      <FullscreenPlane />
     </Canvas>
-  );
+  )
 }
