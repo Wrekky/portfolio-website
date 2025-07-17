@@ -1,8 +1,5 @@
-varying vec3 v_normal;
+varying vec2 pos;
+uniform vec2 uMouse;
 void main() {
-    vec3 lightPos = vec3(2.0,2.0,0.0);
-
-    float diffuseAmount = dot(lightPos, v_normal);
-
-    gl_FragColor = vec4(v_normal,1.0);
+    gl_FragColor = vec4(uMouse.x, 0.0, 1.0, 1.0);
 }

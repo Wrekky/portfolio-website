@@ -19,9 +19,11 @@ import TestingShader from "../components/main.jsx";
   <body>
     <div class="flex h-screen justify-center items-center">
       <TestingShader client:load />
+      <!--TODO: lower opacity --Maybe swap out the entire thing for a transparent shader that adds some fuzz to things behind it -->
       <div
         class="text-center justify-center items-center w-screen p-8 bg-black"
-      >
+      > <!--TODO: Change font, mess with the text colors when I get the initial shader stuff implemented.-->
+      <!-- TODO: replace filler text :) -->
         <h1 class="blue-text-shadow text-4xl text-testblue">Andrew Friesen</h1>
         <h2 class="blue-text-shadow text-lg text-white">Jr Developer</h2>
         <p class="blue-text-shadow text-sm text-white">
@@ -34,6 +36,7 @@ import TestingShader from "../components/main.jsx";
               target="_blank"
               class="has-tooltip pl-4 pr-4 text-white hover:opacity-55"
             >
+            <!--Center tooltips -->
               <span
                 class="tooltip rounded shadow-lg p-1 bg-gray-100 text-black -mt-8"
                 >Github</span
@@ -77,6 +80,7 @@ import TestingShader from "../components/main.jsx";
         </div>
       </div>
     </div>
+    <!--TODO: Split into seperate component pages, include images of previous projects like Oscar, Conestogas final project, uhh maybe some completed github projects like the raycaster. -->
     <main class="content-section">
       <div class="grid grid-cols-2 grid-rows-2">
         <div class="border border-indigo-600">
