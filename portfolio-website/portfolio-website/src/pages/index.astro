@@ -17,11 +17,12 @@ import TestingShader from "../components/main.jsx";
     <title>Andrew Friesen</title>
   </head>
   <body>
+    <TestingShader client:load />
     <div class="flex h-screen justify-center items-center">
-      <TestingShader client:load />
-      <!--TODO: lower opacity --Maybe swap out the entire thing for a transparent shader that adds some fuzz to things behind it -->
-      <div
-        class="text-center justify-center items-center w-screen p-8 bg-black"
+      
+      <!--TODO: glass shader for center div. Maybe swap out the entire thing for a transparent shader that adds some fuzz to things behind it -->
+      <card
+        class="text-center justify-center items-center w-screen p-8 bg-black/50 shadow-lg shadow-black/70"
       > <!--TODO: Change font, mess with the text colors when I get the initial shader stuff implemented.-->
       <!-- TODO: replace filler text :) -->
         <h1 class="blue-text-shadow text-4xl text-testblue">Andrew Friesen</h1>
