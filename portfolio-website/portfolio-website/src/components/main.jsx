@@ -22,8 +22,19 @@ function FullscreenPlane() {
 
   //Shader toy standins
   const iTime = useRef({value: 0.0})
-  const iResolution = useRef({value: new Vector2(size.width, size.height)})
+  const iResolution = useRef({value: new Vector2(size.width, size.height)}) 
   
+  const mousePos = useRef({value: new Vector2(0.0, 0.0)})
+
+  useEffect(()=>{
+    const handleMouseMovement = (e) => {
+      mousePos.current.value.set(e.clientX / window.innerWidth, e.clientY / window.innerHeight)
+    }
+
+    window.addEventListener('mousemove', handleMouseMovement)
+    return () => window.removeEventListener('mousemove', handleMouseMovement)
+  }, [])
+
   useFrame((state) => {
     iTime.current.value = (state.clock.getElapsedTime())
     iResolution.current.value.set(size.width,size.height)
@@ -41,17 +52,6 @@ function FullscreenPlane() {
 }
 
 export default function ThreeCanvas() {
-  const mousePos = useRef({value: new Vector2(0.0, 0.0)})
-
-  useEffect(()=>{
-    const handleMouseMovement = (e) => {
-      mousePos.current.value.set(e.clientX / window.innerWidth, e.clientY / window.innerHeight)
-    }
-
-    window.addEventListener('mousemove', handleMouseMovement)
-    return () => window.removeEventListener('mousemove', handleMouseMovement)
-  }, [])
-
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 75 }}
