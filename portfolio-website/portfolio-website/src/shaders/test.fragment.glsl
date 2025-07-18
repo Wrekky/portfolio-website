@@ -1,3 +1,10 @@
+uniform float iTime;
+uniform vec2 iResolution;
 void main() {
-    gl_FragColor = vec4(uMouse.x, 0.0, 1.0, 1.0);
-}
+    vec2 fragCoord = gl_FragCoord.xy;
+    vec2 uv = fragCoord/iResolution;
+    
+    vec3 col = 0.5 + 0.5*cos(iTime + uv.xyx + vec3(0,2,4));
+
+    gl_FragColor = vec4(col,1);
+} 
