@@ -25,10 +25,8 @@ function FullscreenPlane() {
   const iResolution = useRef({value: new Vector2(size.width, size.height)})
   
   useFrame((state) => {
-    //mouse stuff
     iTime.current.value = (state.clock.getElapsedTime())
     iResolution.current.value.set(size.width,size.height)
-    
   })
 
   return (
@@ -44,7 +42,7 @@ function FullscreenPlane() {
 
 export default function ThreeCanvas() {
   const mousePos = useRef({value: new Vector2(0.0, 0.0)})
-  
+
   useEffect(()=>{
     const handleMouseMovement = (e) => {
       mousePos.current.value.set(e.clientX / window.innerWidth, e.clientY / window.innerHeight)
