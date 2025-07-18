@@ -46,7 +46,6 @@ export default function ThreeCanvas() {
   useEffect(()=>{
     const handleMouseMovement = (e) => {
       mousePos.current.value.set(e.clientX / window.innerWidth, e.clientY / window.innerHeight)
-      console.log("x:", mousePos.current.value.x, "y:", mousePos.current.value.y)
     }
 
     window.addEventListener('mousemove', handleMouseMovement)
