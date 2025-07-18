@@ -9,8 +9,9 @@ import {useRef, useState} from 'react'
 //TODO: Mouse input recognized in shader. Not sure how to do this yet, Can overlay a canvas with zero opacity but then any buttons become unclickable.
 //I want some form of lighting around the mouse -- potentially going to have the mouse be the only fully visible portion of the screen.
 function FullscreenPlane() {
+
+  //Plane info, making the plane the size of the screen.
   const { camera, size } = useThree()
-  
   const [width, height] = useMemo(() => {
     const fov = (camera.fov * Math.PI)
     const distance = camera.position.z
@@ -18,6 +19,8 @@ function FullscreenPlane() {
     const width = height * (size.width / size.height)
     return [width, height]
   }, [camera, size])
+
+  //Shader toy standins
   const iTime = useRef({value: 0.0})
   const iResolution = useRef({value: new Vector2(size.width, size.height)})
   
@@ -41,6 +44,7 @@ function FullscreenPlane() {
 
 export default function ThreeCanvas() {
   const mousePos = useRef({value: new Vector2(0.0, 0.0)})
+  
   useEffect(()=>{
     const handleMouseMovement = (e) => {
       mousePos.current.value.set(e.clientX / window.innerWidth, e.clientY / window.innerHeight)
