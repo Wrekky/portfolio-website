@@ -30,7 +30,9 @@ function FullscreenPlane() {
     const handleMouseMovement = (e) => {
       mousePos.current.value.set(e.clientX / window.innerWidth, e.clientY / window.innerHeight)
     }
-
+    
+    //TODO: add something for when mouse is out of the canvas area? Add scroll perfecntage in pixels to window.innerHeight before dividing?
+    
     window.addEventListener('mousemove', handleMouseMovement)
     return () => window.removeEventListener('mousemove', handleMouseMovement)
   }, [])
@@ -44,7 +46,7 @@ function FullscreenPlane() {
     <mesh>
       <planeGeometry args={[width, height, 16, 16]} />
       <shaderMaterial 
-      uniforms={{iResolution: iResolution.current, iTime: iTime.current}}
+      uniforms={{iResolution: iResolution.current, iTime: iTime.current, mousePos: mousePos.current}}
       vertexShader={vertexShader} 
       fragmentShader={fragmentShader} />
     </mesh>
