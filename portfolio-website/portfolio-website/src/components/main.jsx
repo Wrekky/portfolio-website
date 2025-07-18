@@ -2,7 +2,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import vertexShader from "../shaders/test.vertex.glsl?raw"
 import fragmentShader from "../shaders/test.fragment.glsl?raw"
 import { useThree } from '@react-three/fiber'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Vector2 } from "three";
 import {useRef, useState} from 'react'
 
@@ -10,6 +10,7 @@ import {useRef, useState} from 'react'
 //I want some form of lighting around the mouse -- potentially going to have the mouse be the only fully visible portion of the screen.
 function FullscreenPlane() {
   const { camera, size } = useThree()
+  
   const [width, height] = useMemo(() => {
     const fov = (camera.fov * Math.PI)
     const distance = camera.position.z
@@ -18,10 +19,13 @@ function FullscreenPlane() {
     return [width, height]
   }, [camera, size])
   const iTime = useRef({value: 0.0})
-  const iResolution = useRef({value: new Vector2(size.width,size.height)});
+  const iResolution = useRef({value: new Vector2(size.width, size.height)})
+  
   useFrame((state) => {
+    //mouse stuff
     iTime.current.value = (state.clock.getElapsedTime())
-    iResolution.current.value.set(size.width,size.height);
+    iResolution.current.value.set(size.width,size.height)
+    
   })
 
   return (
@@ -36,6 +40,17 @@ function FullscreenPlane() {
 }
 
 export default function ThreeCanvas() {
+  const mousePos = useRef({value: new Vector2(0.0, 0.0)})
+  useEffect(()=>{
+    const handleMouseMovement = (e) => {
+      mousePos.current.value.set(e.clientX / window.innerWidth, e.clientY / window.innerHeight)
+      console.log("x:", mousePos.current.value.x, "y:", mousePos.current.value.y)
+    }
+
+    window.addEventListener('mousemove', handleMouseMovement)
+    return () => window.removeEventListener('mousemove', handleMouseMovement)
+  }, [])
+
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 75 }}
@@ -46,6 +61,7 @@ export default function ThreeCanvas() {
         width: '100vw',
         height: '100vh',
         zIndex: -1,
+        pointerEvents: 'none'
       }}
     >
       <FullscreenPlane />
