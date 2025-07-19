@@ -1,13 +1,12 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import vertexShader from "../shaders/test.vertex.glsl?raw"
-import fragmentShader from "../shaders/test.fragment.glsl?raw"
+import vertexShader from "../shaders/generic.vertex.glsl?raw"
+import fragmentShader from "../shaders/background.fragment.glsl?raw"
 import { useThree } from '@react-three/fiber'
 import { useEffect, useMemo } from 'react'
 import { Vector2 } from "three";
 import {useRef, useState} from 'react'
 
-function FullscreenPlane() {
-
+function ShaderEffect() {
   //Plane info, making the plane the size of the screen.
   const {gl, camera, size } = useThree()
   const [width, height] = useMemo(() => {
@@ -50,7 +49,7 @@ function FullscreenPlane() {
   )
 }
 
-export default function ThreeCanvas() {
+export default function BackgroundCanvas() {
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 75 }}
@@ -64,7 +63,7 @@ export default function ThreeCanvas() {
         pointerEvents: 'none'
       }}
     >
-      <FullscreenPlane />
+      <ShaderEffect />
     </Canvas>
   )
 }
