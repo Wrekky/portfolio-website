@@ -11,7 +11,7 @@ import {useRef, useState} from 'react'
 function FullscreenPlane() {
 
   //Plane info, making the plane the size of the screen.
-  const { camera, size } = useThree()
+  const {gl, camera, size } = useThree()
   const [width, height] = useMemo(() => {
     const fov = (camera.fov * Math.PI)
     const distance = camera.position.z
@@ -39,7 +39,7 @@ function FullscreenPlane() {
 
   useFrame((state) => {
     iTime.current.value = (state.clock.getElapsedTime())
-    iResolution.current.value.set(size.width,size.height)
+    iResolution.current.value.set(gl.domElement.width,gl.domElement.height)
   })
 
   return (
