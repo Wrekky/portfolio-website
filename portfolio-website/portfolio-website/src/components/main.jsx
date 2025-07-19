@@ -6,8 +6,6 @@ import { useEffect, useMemo } from 'react'
 import { Vector2 } from "three";
 import {useRef, useState} from 'react'
 
-//TODO: Mouse input recognized in shader. Not sure how to do this yet, Can overlay a canvas with zero opacity but then any buttons become unclickable.
-//I want some form of lighting around the mouse -- potentially going to have the mouse be the only fully visible portion of the screen.
 function FullscreenPlane() {
 
   //Plane info, making the plane the size of the screen.
@@ -22,16 +20,15 @@ function FullscreenPlane() {
 
   //Shader toy standins
   const iTime = useRef({value: 0.0})
-  const iResolution = useRef({value: new Vector2(size.width, size.height)}) 
-  
+  const iResolution = useRef({value: new Vector2(0.0, 0.0)}) 
+
   const mousePos = useRef({value: new Vector2(0.0, 0.0)})
 
   useEffect(()=>{
     const handleMouseMovement = (e) => {
       mousePos.current.value.set(e.clientX / window.innerWidth, e.clientY / window.innerHeight)
     }
-    
-    //TODO: add something for when mouse is out of the canvas area? Add scroll perfecntage in pixels to window.innerHeight before dividing?
+    //TODO: add something for when mouse scrolled. Effect currently breaks when scrolling due to grabbing mouse position from css rather than canvas.
     
     window.addEventListener('mousemove', handleMouseMovement)
     return () => window.removeEventListener('mousemove', handleMouseMovement)
