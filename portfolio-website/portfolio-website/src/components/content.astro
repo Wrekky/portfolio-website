@@ -1,6 +1,9 @@
+---
+import ProjectShader from "../components/projectShader.jsx";
+---
 <main class="content-section">
-    <div class="grid grid-cols-2 grid-rows-2">
-        <div class="border border-indigo-600">
+    <div class="columns-2xl">
+        <div id="text-section" class="aspect-video border border-indigo-600">
             <h1 class="blue-text-shadow text-4xl text-white">
                 some filler data
             </h1>
@@ -9,32 +12,8 @@
             </h2>
             <p class="blue-text-shadow text-sm text-white">some filler data</p>
         </div>
-        <div class="border border-indigo-600">
-            <h1 class="blue-text-shadow text-4xl text-white">
-                some filler data
-            </h1>
-            <h2 class="blue-text-shadow text-lg text-white">
-                some filler data
-            </h2>
-            <p class="blue-text-shadow text-sm text-white">some filler data</p>
-        </div>
-        <div class="border border-indigo-600">
-            <h1 class="blue-text-shadow text-4xl text-white">
-                some filler data
-            </h1>
-            <h2 class="blue-text-shadow text-lg text-white">
-                some filler data
-            </h2>
-            <p class="blue-text-shadow text-sm text-white">some filler data</p>
-        </div>
-        <div class="border border-indigo-600">
-            <h1 class="blue-text-shadow text-4xl text-white">
-                some filler data
-            </h1>
-            <h2 class="blue-text-shadow text-lg text-white">
-                some filler data
-            </h2>
-            <p class="blue-text-shadow text-sm text-white">some filler data</p>
+        <div id="image-section" class="aspect-video border border-indigo-600">
+            <ProjectShader client:load/>
         </div>
     </div>
 </main>
