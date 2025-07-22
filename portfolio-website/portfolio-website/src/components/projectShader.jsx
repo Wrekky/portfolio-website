@@ -6,19 +6,9 @@ import fragmentShader from "../shaders/project.fragment.glsl?raw"
 import { TextureLoader } from "three";
 function ShaderEffect() {
   const colorMap = useLoader(TextureLoader, '../src/resources/images/tempImage.png')
-  //Plane info, making the plane the size of the screen.
-  const {gl, camera, size } = useThree()
-  const [width, height] = useMemo(() => {
-    const fov = (camera.fov * Math.PI)
-    const distance = camera.position.z
-    const height = 2 * Math.tan(fov / 2) * distance
-    const width = height * (size.width / size.height)
-    return [width, height]
-  }, [camera, size])
-
   return (
     <mesh>
-      <planeGeometry args={[width, height, 16, 16]} />
+      <planeGeometry args={[16, 9]} />
       <shaderMaterial 
       uniforms={{testImage: {value: colorMap}}}
       vertexShader={vertexShader} 
