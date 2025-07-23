@@ -8,14 +8,7 @@ import {useRef, useState} from 'react'
 
 function ShaderEffect() {
   //Plane info, making the plane the size of the screen.
-  const {gl, camera, size } = useThree()
-  const [width, height] = useMemo(() => {
-    const fov = (camera.fov * Math.PI)
-    const distance = camera.position.z
-    const height = 2 * Math.tan(fov / 2) * distance
-    const width = height * (size.width / size.height)
-    return [width, height]
-  }, [camera, size])
+  const { gl } = useThree()
 
   //Shader toy standins
   const iTime = useRef({value: 0.0})
@@ -40,11 +33,11 @@ function ShaderEffect() {
 
   return (
     <mesh>
-      <planeGeometry args={[width, height, 16, 16]} />
       <shaderMaterial 
       uniforms={{iResolution: iResolution.current, iTime: iTime.current, mousePos: mousePos.current}}
       vertexShader={vertexShader} 
       fragmentShader={fragmentShader} />
+      <planeGeometry args={[window.innerWidth, window.innerHeight, 16, 16]} />
     </mesh>
   )
 }
