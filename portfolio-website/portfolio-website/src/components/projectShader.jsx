@@ -26,7 +26,7 @@ function ShaderEffect() {
     >
       <planeGeometry args={[width, height]} />
       <shaderMaterial
-        uniforms={{ testImage: { value: colorMap }, mousePos: { value: mousePos.current } }}
+        uniforms={{ testImage: { value: colorMap }, mousePos: mousePos.current }}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader} />
     </mesh>
