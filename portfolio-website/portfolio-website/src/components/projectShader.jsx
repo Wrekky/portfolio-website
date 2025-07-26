@@ -15,7 +15,7 @@ function ShaderEffect() {
   return (
     <mesh
     ref={meshRef}
-    onClick={
+    onPointerMove={
       (event) =>{
         const worldPoint = event.point.clone();
         //change to uv coordinates (0,1)
