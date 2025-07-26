@@ -3,6 +3,8 @@ uniform vec2 mousePos;
 
 varying vec2 vUv;
 void main() {
+  //TODO: Add a distorted dither behind the moving line.
+  //TODO: Slant the line based on mouse speed & position. Make the line chase the mouse not be set to it.
   //size of the strip splitting the image
   const float bandSize = 0.01;
   //attempting to apply blur: 
