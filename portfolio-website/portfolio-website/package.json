@@ -17,7 +17,7 @@
     "@types/bootstrap": "^5.2.10",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "astro": "^5.11.0",
+    "astro": "^5.12.3",
     "astro-bootstrap": "^0.7.2",
     "bootstrap": "^5.3.7",
     "react": "^19.1.0",
