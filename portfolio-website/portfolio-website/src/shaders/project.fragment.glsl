@@ -1,6 +1,6 @@
 uniform sampler2D testImage;
 uniform vec2 mousePos;
-
+//uniform float linePos;
 varying vec2 vUv;
 void main() {
   //TODO: Add a distorted dither behind the moving line.
@@ -30,7 +30,12 @@ void main() {
   } else {
     pixel_color = texture2D(testImage, vUv);
   }
-  if(mousePos.x > vUv.x - bandSize && mousePos.x < vUv.x + bandSize) {
+  //angles the line, multiply by -1 to change angle direction, will be based on
+  //speed in the future.
+  float angleMulti = 0.005;
+  float angleModifier = (angleMulti * 2.0 * vUv.y);
+
+  if(mousePos.x - (angleMulti * -1.0) > (vUv.x - bandSize + angleModifier) && mousePos.x - (angleMulti * -1.0) < (vUv.x + bandSize + angleModifier)) {
     pixel_color *= vec4(0.18, 0.91, 0.18, 0.12);
   }
   gl_FragColor = pixel_color;
