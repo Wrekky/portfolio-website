@@ -1,12 +1,8 @@
-import { Canvas, useLoader, useFrame } from "@react-three/fiber";
-import { useThree } from '@react-three/fiber'
-import { useMemo } from 'react'
 import vertexShader from "../shaders/generic.vertex.glsl?raw"
 import fragmentShader from "../shaders/project.fragment.glsl?raw"
-import { TextureLoader } from "three";
-import { Vector2 } from "three";
+import { Canvas, useLoader, useFrame } from "@react-three/fiber";
+import { TextureLoader, Vector2 } from "three";
 import {useRef} from 'react'
-import { abs } from "three/tsl";
 function ShaderEffect() {
   const colorMap = useLoader(TextureLoader, '../src/resources/images/tempImage.png')
   const meshRef = useRef();

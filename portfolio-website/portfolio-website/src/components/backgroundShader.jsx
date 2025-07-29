@@ -1,10 +1,8 @@
-import { Canvas, useFrame } from "@react-three/fiber";
 import vertexShader from "../shaders/generic.vertex.glsl?raw"
 import fragmentShader from "../shaders/background.fragment.glsl?raw"
-import { useThree } from '@react-three/fiber'
-import { useEffect, useMemo } from 'react'
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useRef } from 'react'
 import { Vector2 } from "three";
-import {useRef, useState} from 'react'
 
 function ShaderEffect() {
   //Plane info, making the plane the size of the screen.
