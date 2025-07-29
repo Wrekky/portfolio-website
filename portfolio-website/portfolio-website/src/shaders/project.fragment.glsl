@@ -1,5 +1,6 @@
 uniform sampler2D testImage;
 uniform vec2 mousePos;
+uniform vec2 barPos;
 //uniform float linePos;
 varying vec2 vUv;
 void main() {
@@ -30,12 +31,22 @@ void main() {
   } else {
     pixel_color = texture2D(testImage, vUv);
   }
-  //angles the line, multiply by -1 to change angle direction, will be based on
-  //speed in the future.
-  float angleMulti = 0.005;
+  //angles the line, multiply by -1 to change angle direction.
+  float speedMult = abs(mousePos.x - barPos.x) * 10.0;
+  float angleMulti = 0.020 * -1.0;
+  if((mousePos.x - barPos.x) < 0.0) {
+    angleMulti = angleMulti * -1.0;
+  }
+
+  if (speedMult > 0.1) {
+    angleMulti = angleMulti * speedMult;
+  }
+  else {
+    angleMulti = 0.0;
+  }
   float angleModifier = (angleMulti * 2.0 * vUv.y);
 
-  if(mousePos.x - (angleMulti * -1.0) > (vUv.x - bandSize + angleModifier) && mousePos.x - (angleMulti * -1.0) < (vUv.x + bandSize + angleModifier)) {
+  if(barPos.x - (angleMulti * -1.0) > (vUv.x - bandSize + angleModifier) && barPos.x - (angleMulti * -1.0) < (vUv.x + bandSize + angleModifier)) {
     pixel_color *= vec4(0.18, 0.91, 0.18, 0.12);
   }
   gl_FragColor = pixel_color;

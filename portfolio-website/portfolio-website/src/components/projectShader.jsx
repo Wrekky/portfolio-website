@@ -1,4 +1,4 @@
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { useThree } from '@react-three/fiber'
 import { useMemo } from 'react'
 import vertexShader from "../shaders/generic.vertex.glsl?raw"
@@ -6,12 +6,23 @@ import fragmentShader from "../shaders/project.fragment.glsl?raw"
 import { TextureLoader } from "three";
 import { Vector2 } from "three";
 import {useRef} from 'react'
+import { abs } from "three/tsl";
 function ShaderEffect() {
   const colorMap = useLoader(TextureLoader, '../src/resources/images/tempImage.png')
   const meshRef = useRef();
   const mousePos = useRef({value: new Vector2(0.0, 0.0)})
+  const barPos = useRef({value: new Vector2(0.5, 0.0)})
   const width = 16;
   const height = 9;
+  //moving view bar
+  useFrame((state) => {
+    if(mousePos.current.value.x > barPos.current.value.x) {
+      barPos.current.value.set(barPos.current.value.x + 0.05 ,0.0)
+    }
+    else if(mousePos.current.value.x < barPos.current.value.x) {
+      barPos.current.value.set(barPos.current.value.x - 0.05 ,0.0)
+    }
+  })
   return (
     <mesh
     ref={meshRef}
@@ -26,7 +37,7 @@ function ShaderEffect() {
     >
       <planeGeometry args={[width, height]} />
       <shaderMaterial
-        uniforms={{ testImage: { value: colorMap }, mousePos: mousePos.current }}
+        uniforms={{ testImage: { value: colorMap }, mousePos: mousePos.current, barPos: barPos.current }}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader} />
     </mesh>
