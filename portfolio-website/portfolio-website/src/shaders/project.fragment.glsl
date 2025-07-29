@@ -50,7 +50,9 @@ void main() {
   }
   //drawing bar
   if(barPos.x - (angleMulti * -1.0) > (vUv.x - bandSize + angleModifier) && barPos.x - (angleMulti * -1.0) < (vUv.x + bandSize + angleModifier)) {
-    pixel_color *= vec4(0.18, 0.91, 0.18, 0.12);
+    //kinda forcing opacity, cant figure out another way to do this without layering shaders on top of each other.
+    float colorMult = 0.3;
+    pixel_color *= vec4(colorMult, colorMult, colorMult, 1.0);
   }
   gl_FragColor = pixel_color;
 }
