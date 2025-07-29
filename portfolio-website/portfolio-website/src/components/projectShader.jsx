@@ -16,11 +16,14 @@ function ShaderEffect() {
   const height = 9;
   //moving view bar
   useFrame((state) => {
-    if(mousePos.current.value.x > barPos.current.value.x) {
-      barPos.current.value.set(barPos.current.value.x + 0.05 ,0.0)
-    }
-    else if(mousePos.current.value.x < barPos.current.value.x) {
-      barPos.current.value.set(barPos.current.value.x - 0.05 ,0.0)
+    var distance = Math.abs(mousePos.current.value.x - barPos.current.value.x) * 2
+    if (distance > 0.01) {
+      if (mousePos.current.value.x > barPos.current.value.x) {
+        barPos.current.value.set(barPos.current.value.x + 0.01 * distance, 0.0)
+      }
+      else if (mousePos.current.value.x < barPos.current.value.x) {
+        barPos.current.value.set(barPos.current.value.x - 0.01 * distance, 0.0)
+      }
     }
   })
   return (
@@ -29,9 +32,7 @@ function ShaderEffect() {
     onPointerMove={
       (event) =>{
         const worldPoint = event.point.clone();
-        //change to uv coordinates (0,1)
         mousePos.current.value.set((worldPoint.x / width) + 0.5, (worldPoint.y / height) + 0.5)
-        //console.log(mousePos.current.value.x, "x", mousePos.current.value.y, "y");
       }
     }
     >

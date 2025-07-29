@@ -7,7 +7,7 @@ void main() {
   //TODO: Add a distorted dither behind the moving line.
   //TODO: Slant the line based on mouse speed & position. Make the line chase the mouse not be set to it.
   //size of the strip splitting the image
-  const float bandSize = 0.01;
+  const float bandSize = 0.005;
   //attempting to apply blur: 
   //area around the pixel to sample.
   const float kernalSize = 8.0;
@@ -22,15 +22,7 @@ void main() {
 
   vec4 pixel_color = vec4(0.0, 0.0, 0.0, 0.0);
 
-  if(vUv.x > mousePos.x - bandSize) {
-    for(int x = -halfSize; x <= halfSize; x++) {
-      for(int y = -halfSize; y <= halfSize; y++) {
-        pixel_color += coefficient * texture2D(testImage, vUv + (float(x) * dx) + (float(y) * dy));
-      }
-    }
-  } else {
-    pixel_color = texture2D(testImage, vUv);
-  }
+
   //angles the line, multiply by -1 to change angle direction.
   float speedMult = abs(mousePos.x - barPos.x) * 10.0;
   float angleMulti = 0.020 * -1.0;
@@ -46,6 +38,17 @@ void main() {
   }
   float angleModifier = (angleMulti * 2.0 * vUv.y);
 
+  //drawing blur effect, needs to understand bar angle and size.
+  if(barPos.x - (angleMulti * -1.0) < (vUv.x + bandSize + angleModifier)) {
+    for(int x = -halfSize; x <= halfSize; x++) {
+      for(int y = -halfSize; y <= halfSize; y++) {
+        pixel_color += coefficient * texture2D(testImage, vUv + (float(x) * dx) + (float(y) * dy));
+      }
+    }
+  } else {
+    pixel_color = texture2D(testImage, vUv);
+  }
+  //drawing bar
   if(barPos.x - (angleMulti * -1.0) > (vUv.x - bandSize + angleModifier) && barPos.x - (angleMulti * -1.0) < (vUv.x + bandSize + angleModifier)) {
     pixel_color *= vec4(0.18, 0.91, 0.18, 0.12);
   }
