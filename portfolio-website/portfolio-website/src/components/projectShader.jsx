@@ -3,8 +3,8 @@ import fragmentShader from "../shaders/project.fragment.glsl?raw"
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { TextureLoader, Vector2 } from "three";
 import {useRef} from 'react'
-function ShaderEffect() {
-  const colorMap = useLoader(TextureLoader, '../src/resources/images/tempImage.png')
+function ShaderEffect({imagePath}) {
+  const colorMap = useLoader(TextureLoader, imagePath)
   const meshRef = useRef();
   const mousePos = useRef({value: new Vector2(0.0, 0.0)})
   const barPos = useRef({value: new Vector2(0.5, 0.0)})
@@ -41,12 +41,12 @@ function ShaderEffect() {
   )
 }
 
-export default function ProjectShader() {
+export default function ProjectShader({imagePath}) {
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 75 }}
     >
-      <ShaderEffect />
+      <ShaderEffect imagePath={imagePath} />
     </Canvas>
   )
 }
