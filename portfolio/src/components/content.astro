@@ -1,15 +1,18 @@
 ---
 import ProjectShader from "../components/projectShader.jsx";
 ---
-
-<main class="content-section">
+<!--TODO: group sections differently based on display size, currently shows two text sections in a row when viewed in mobile-->
+<main class="content-section bg-black">
   <div class="w-auto lg:columns-2">
-    <div id="text-section" class="aspect-video border border-indigo-600">
+    <div
+      id="text-section"
+      class="aspect-video content-center self-center text-center"
+    >
       <h1 class="blue-text-shadow text-4xl text-white">some filler data</h1>
       <h2 class="blue-text-shadow text-lg text-white">some filler data</h2>
       <p class="blue-text-shadow text-sm text-white">some filler data</p>
     </div>
-    <div id="image-section" class="aspect-video border border-indigo-600">
+    <div id="image-section" class="aspect-video">
       <ProjectShader
         imagePath={"../src/resources/images/tempImage.png"}
         client:load
@@ -17,25 +20,31 @@ import ProjectShader from "../components/projectShader.jsx";
     </div>
   </div>
   <div class="w-auto lg:columns-2">
-    <div id="text-section" class="aspect-video border border-indigo-600">
-      <h1 class="blue-text-shadow text-4xl text-white">some filler data</h1>
-      <h2 class="blue-text-shadow text-lg text-white">some filler data</h2>
-      <p class="blue-text-shadow text-sm text-white">some filler data</p>
-    </div>
-    <div id="image-section" class="aspect-video border border-indigo-600">
+    <div id="image-section" class="aspect-video">
       <ProjectShader
         imagePath={"../src/resources/images/tempImage.png"}
         client:load
       />
     </div>
-  </div>
-    <div class="w-auto lg:columns-2">
-    <div id="text-section" class="aspect-video border border-indigo-600">
+    <div
+      id="text-section"
+      class="aspect-video content-center self-center text-center"
+    >
       <h1 class="blue-text-shadow text-4xl text-white">some filler data</h1>
       <h2 class="blue-text-shadow text-lg text-white">some filler data</h2>
       <p class="blue-text-shadow text-sm text-white">some filler data</p>
     </div>
-    <div id="image-section" class="aspect-video border border-indigo-600">
+  </div>
+  <div class="w-auto lg:columns-2">
+    <div
+      id="text-section"
+      class="aspect-video content-center self-center text-center"
+    >
+      <h1 class="blue-text-shadow text-4xl text-white">some filler data</h1>
+      <h2 class="blue-text-shadow text-lg text-white">some filler data</h2>
+      <p class="blue-text-shadow text-sm text-white">some filler data</p>
+    </div>
+    <div id="image-section" class="aspect-video">
       <ProjectShader
         imagePath={"../src/resources/images/tempImage.png"}
         client:load
