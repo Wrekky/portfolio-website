@@ -1,6 +1,7 @@
 ---
 import ProjectShader from "../components/projectShader.jsx";
 ---
+
 <!--TODO: group sections differently based on display size, currently shows two text sections in a row when viewed in mobile-->
 <main class="content-section bg-black">
   <div class="w-auto lg:columns-2">
@@ -13,18 +14,12 @@ import ProjectShader from "../components/projectShader.jsx";
       <p class="blue-text-shadow text-sm text-white">some filler data</p>
     </div>
     <div id="image-section" class="aspect-video">
-      <ProjectShader
-        imagePath={"images/tempImage.png"}
-        client:load
-      />
+      <ProjectShader imagePath={`${import.meta.env.BASE_URL}/images/tempImage.png`} client:load />
     </div>
   </div>
   <div class="w-auto lg:columns-2">
     <div id="image-section" class="aspect-video">
-      <ProjectShader
-        imagePath={"images/tempImage.png"}
-        client:load
-      />
+      <ProjectShader imagePath={`${import.meta.env.BASE_URL}/images/tempImage.png`} client:load />
     </div>
     <div
       id="text-section"
@@ -46,7 +41,7 @@ import ProjectShader from "../components/projectShader.jsx";
     </div>
     <div id="image-section" class="aspect-video">
       <ProjectShader
-        imagePath={"images/tempImage.png"}
+        imagePath={`${import.meta.env.BASE_URL}/images/tempImage.png`}
         client:load
       />
     </div>
