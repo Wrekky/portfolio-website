@@ -1,11 +1,8 @@
 uniform sampler2D testImage;
 uniform vec2 mousePos;
 uniform vec2 barPos;
-//uniform float linePos;
 varying vec2 vUv;
 void main() {
-  //TODO: Add a distorted dither behind the moving line.
-  //TODO: Slant the line based on mouse speed & position. Make the line chase the mouse not be set to it.
   //size of the strip splitting the image
   const float bandSize = 0.005;
   //attempting to apply blur: 
@@ -24,6 +21,7 @@ void main() {
 
 
   //angles the line, multiply by -1 to change angle direction.
+  //TODO: Add additional blur near bar based on bar speed.
   float speedMult = abs(mousePos.x - barPos.x) * 10.0;
   float angleMulti = 0.020 * -1.0;
   if((mousePos.x - barPos.x) < 0.0) {
