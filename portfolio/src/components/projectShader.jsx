@@ -12,7 +12,7 @@ function ShaderEffect({imagePath}) {
   const height = 9;
   //moving view bar
   useFrame((state) => {
-    var distance = Math.abs(mousePos.current.value.x - barPos.current.value.x) * 2
+    var distance = Math.abs(mousePos.current.value.x - barPos.current.value.x) * 6
     if (distance > 0.01) {
       if (mousePos.current.value.x > barPos.current.value.x) {
         barPos.current.value.set(barPos.current.value.x + 0.01 * distance, 0.0)
