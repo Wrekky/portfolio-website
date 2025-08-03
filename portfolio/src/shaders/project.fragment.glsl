@@ -22,7 +22,9 @@ void main() {
 
   //angles the line, multiply by -1 to change angle direction.
   //TODO: Add additional blur near bar based on bar speed.
-  float speedMult = abs(mousePos.x - barPos.x) * 10.0;
+  float mouseDiff = abs(mousePos.x - barPos.x);
+  float mouseMult = mousePos.x - barPos.x > 0.0 ? 1.0 : -1.0;
+  float speedMult = mouseDiff * 10.0;
   float angleMulti = 0.020 * -1.0;
   if((mousePos.x - barPos.x) < 0.0) {
     angleMulti = angleMulti * -1.0;
@@ -47,7 +49,7 @@ void main() {
     pixel_color = texture2D(testImage, vUv);
   }
   //drawing bar
-  if(barPos.x - (angleMulti * -1.0) > (vUv.x - bandSize + angleModifier) && barPos.x - (angleMulti * -1.0) < (vUv.x + bandSize + angleModifier)) {
+  if(barPos.x - (angleMulti * -1.0) > ((vUv.x - bandSize) + angleModifier) && barPos.x - (angleMulti * -1.0) < ((vUv.x + bandSize) + angleModifier)) {
     //kinda forcing opacity, cant figure out another way to do this without layering shaders on top of each other.
     float colorMult = 0.3;
     pixel_color *= vec4(colorMult, colorMult, colorMult, 1.0);
