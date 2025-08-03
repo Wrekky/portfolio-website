@@ -10,7 +10,7 @@ void main() {
   const float kernalSize = 8.0;
   const int halfSize = 4;
 
-  const float coefficient = 1.0 / (kernalSize * kernalSize);
+  float coefficient = 1.0 / (kernalSize * kernalSize);
 
   //offsets the image, higher numbers here can show repeated images, maybe worth doing something with.
   //can also swap to horizontal or vertical blur by making only one of these smaller.
@@ -57,11 +57,22 @@ void main() {
   //TODO: refactor this :)
   if(barPos.x - (angleMulti * -1.0) > ((vUv.x - (bandSize + mouseDiff)) + angleModifier) && barPos.x - (angleMulti * -1.0) < ((vUv.x + (bandSize + mouseDiff)) + angleModifier)) {
     //draws right side of the pixels
+    coefficient = speedMult / (kernalSize * kernalSize);
     if(vUv.x > barPos.x - angleModifier && mouseMult < 0.0) {
-      pixel_color = vec4(1, 1, 1, 1.0);
+      //temp blur code, have to refactor this too...
+      for(int x = -halfSize; x <= halfSize; x++) {
+        for(int y = -halfSize; y <= halfSize; y++) {
+          pixel_color += coefficient * texture2D(testImage, vUv + (float(x) * dx) + (float(y) * dy));
+        }
+      }
     }//left side
     else if(vUv.x < barPos.x - angleModifier && mouseMult > 0.0) {
-      pixel_color = vec4(0.8, 0.02, 0.02, 1.0);
+      //temp blur code, have to refactor this too...
+      for(int x = -halfSize; x <= halfSize; x++) {
+        for(int y = -halfSize; y <= halfSize; y++) {
+          pixel_color += coefficient * texture2D(testImage, vUv + (float(x) * dx) + (float(y) * dy));
+        }
+      }
     }
   }
   gl_FragColor = pixel_color;
