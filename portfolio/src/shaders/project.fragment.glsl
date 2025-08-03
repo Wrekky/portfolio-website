@@ -49,15 +49,16 @@ void main() {
     pixel_color = texture2D(testImage, vUv);
   }
   //drawing bar
-  if(barPos.x - (angleMulti * -1.0) > ((vUv.x - bandSize) + angleModifier) && barPos.x - (angleMulti * -1.0) < ((vUv.x + bandSize) + angleModifier)) {
+  //if(barPos.x - (angleMulti * -1.0) > ((vUv.x - bandSize) + angleModifier) && barPos.x - (angleMulti * -1.0) < ((vUv.x + bandSize) + angleModifier)) {
     //kinda forcing opacity, cant figure out another way to do this without layering shaders on top of each other.
-    float colorMult = 0.3;
-    pixel_color *= vec4(colorMult, colorMult, colorMult, 1.0);
-  }
+    //float colorMult = 0.3;
+    //pixel_color *= vec4(colorMult, colorMult, colorMult, 1.0);
+  //}
   //TODO: refactor this :)
   if(barPos.x - (angleMulti * -1.0) > ((vUv.x - (bandSize + mouseDiff)) + angleModifier) && barPos.x - (angleMulti * -1.0) < ((vUv.x + (bandSize + mouseDiff)) + angleModifier)) {
     //draws right side of the pixels
-    coefficient = speedMult / (kernalSize * kernalSize);
+    float pixelDiff = (abs(barPos.x - vUv.x) - 1.0) * -0.5; 
+    coefficient = pixelDiff / (kernalSize * kernalSize);
     if(vUv.x > barPos.x - angleModifier && mouseMult < 0.0) {
       //temp blur code, have to refactor this too...
       for(int x = -halfSize; x <= halfSize; x++) {
