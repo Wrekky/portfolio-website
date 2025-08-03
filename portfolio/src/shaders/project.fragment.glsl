@@ -54,5 +54,15 @@ void main() {
     float colorMult = 0.3;
     pixel_color *= vec4(colorMult, colorMult, colorMult, 1.0);
   }
+  //TODO: refactor this :)
+  if(barPos.x - (angleMulti * -1.0) > ((vUv.x - (bandSize + mouseDiff)) + angleModifier) && barPos.x - (angleMulti * -1.0) < ((vUv.x + (bandSize + mouseDiff)) + angleModifier)) {
+    //draws right side of the pixels
+    if(vUv.x > barPos.x - angleModifier && mouseMult < 0.0) {
+      pixel_color = vec4(1, 1, 1, 1.0);
+    }//left side
+    else if(vUv.x < barPos.x - angleModifier && mouseMult > 0.0) {
+      pixel_color = vec4(0.8, 0.02, 0.02, 1.0);
+    }
+  }
   gl_FragColor = pixel_color;
 }
